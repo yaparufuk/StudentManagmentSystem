@@ -1,0 +1,62 @@
+server:
+  port: 8080
+  error:
+    include-binding-errors: always
+    include-message: always
+    include-stacktrace: never
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springboot_db
+    username: db_user
+    password: db_password
+  jpa:
+    show_sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        format_sql: true
+  security:
+    user:
+      name: admin
+      password: password
+
+logging:   #logging.file.name:log/studentapp.log
+  file:
+    name: log/studentapp.log
+  pattern:
+    file: "%d %-5level [%thread] %logger:%msg%n"
+  level:
+    '[org.springframework.web]': WARN
+    '[org.hibernate]': INFO
+    #'[com.tpe]': INFO
+    com:
+      tpe: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['info','health','threaddump','env','beans','loggers']
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: 'Student Management System Demo App '
+    version: '@project.version@'
+    description: 'Demo App For Spring Boot'
+
+
+
+
+#yorum satiri
+# aktif etme
+# menü-->Run-->Edit Configuration
+# Açilan pencere de proje yoksa Add ile ekle
+# Modify option tikla --> Add VM option seç
+#-Dspring.profiles.active=dev --> YAZ
+# kapatmak için -Dspring.profiles.active=dev --> SIL
